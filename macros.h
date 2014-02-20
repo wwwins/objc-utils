@@ -30,6 +30,7 @@
 // Notifications
 #define addEventListener(id,s,n,o)                 [[NSNotificationCenter defaultCenter] addObserver:id selector:s name:n object:o]
 #define removeEventListener(id,n,o)                [[NSNotificationCenter defaultCenter] removeObserver:id name:n object:o]
+#define removeAllEventListener(id)                 [[NSNotificationCenter defaultCenter] removeObserver:id]
 #define dispatchEvent(n,o)                         [[NSNotificationCenter defaultCenter] postNotificationName:n object:o]
 #define dispatchEventWithData(n,o,d)               [[NSNotificationCenter defaultCenter] postNotificationName:n object:o userInfo:d]
 
