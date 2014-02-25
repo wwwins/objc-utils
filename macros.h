@@ -5,7 +5,7 @@
 #define IS_IPHONE_5                                (IS_IPHONE && [[UIScreen mainScreen] bounds].size.height == 568.0f)
 
 
-// Version
+// System version
 // if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.1") {
 //  ios >= 6.1.3
 // }
@@ -14,6 +14,10 @@
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN(v)                ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)    ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+
+// APP version
+#define APP_VERSION                                [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
 
 
 // Color
