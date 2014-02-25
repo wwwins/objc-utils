@@ -18,6 +18,7 @@
 
 // APP version
 #define APP_VERSION                                [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
+#define APP_BUILD_DATE                             [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
 
 
 // Color
