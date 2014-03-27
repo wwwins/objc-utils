@@ -52,3 +52,28 @@
 #else
 #define trace(...)
 #endif
+
+// Google analytics v2
+#if GA_2
+#define myTracker_sendView(v)                      id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];\
+                                                                             [tracker sendView:v];
+
+#define myTracker_sendEvent(c,a)                   id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];\
+                                                                             [tracker sendEventWithCategory:c \
+                                                                                      withAction:a \
+                                                                                      withLabel:nil \
+                                                                                      withValue:nil];
+#endif
+
+// Google analytics v3
+#if GA_3
+#define myTracker_sendView(v)                      id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];\
+                                                                             [tracker set:kGAIScreenName value:(v)];\
+                                                                             [tracker send:[[GAIDictionaryBuilder createAppView]  build]];
+
+#define myTracker_sendEvent(c,a)                   id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];\
+                                                                             [tracker send:[[GAIDictionaryBuilder createEventWithCategory:(c)\
+                                                                                      action:(a) \
+                                                                                      label:nil \
+                                                                                      value:nil] build]];
+#endif
