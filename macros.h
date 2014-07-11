@@ -45,7 +45,7 @@
 #define append(a,b)                                [a stringByAppendingString:b]
 
 // open url in safari
-#define openURL                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:v]];
+#define openURL(v)                                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:v]];
 
 
 // Log
