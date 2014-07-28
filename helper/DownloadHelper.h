@@ -1,6 +1,5 @@
 //
 //  DownloadHelper.h
-//  MyLayoutViewDemo
 //
 //  Created by wwwins on 2014/7/25.
 //  Copyright (c) 2014年 isobar. All rights reserved.
