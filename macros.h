@@ -56,7 +56,7 @@
 // Log
 // trace("foo");
 #if DEBUG == 1
-#define trace(c,...)                               NSLog(@"[File %s][Line %d]:%s", __FILE__, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define trace(c,...)                               NSLog((@"[Line %s:%d] " c), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
 #define trace(...)
 #endif
