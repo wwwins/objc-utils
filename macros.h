@@ -42,16 +42,19 @@
 
 // Utils
 // append(@"hello ", @"world");
-#define append(a,b)                                [a stringByAppendingString:b]
+#define APPEND(a,b)                                [a stringByAppendingString:b]
 
 // open url in safari
-#define openURL(v)                                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:v]];
+#define OPEN_URL(v)                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:v]];
 
+// set UIView position and size
+#define VIEW_X_Y(v,x,y)                            {CGRect f = v.frame; f.origin.x = x; f.origin.y = y; v.frame = f;}
+#define VIEW_W_H(v,w,h)                            {CGRect f = v.frame; f.size.width = w; f.size.height = h; v.frame = f;}
 
 // Log
 // trace("foo");
 #if DEBUG == 1
-#define trace(c)                                   NSLog(@"%s [Line %d] %s", __PRETTY_FUNCTION__, __LINE__, c)
+#define trace(c,...)                               NSLog(@"[File %s][Line %d]:%s", __FILE__, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
 #define trace(...)
 #endif
