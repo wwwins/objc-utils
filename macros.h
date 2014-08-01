@@ -48,8 +48,10 @@
 #define OPEN_URL(v)                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:v]];
 
 // set UIView position and size
-#define VIEW_X_Y(v,x,y)                            {CGRect f = v.frame; f.origin.x = x; f.origin.y = y; v.frame = f;}
-#define VIEW_W_H(v,w,h)                            {CGRect f = v.frame; f.size.width = w; f.size.height = h; v.frame = f;}
+#define CGRECT_MAKE_XY(o,x,y)                      CGRectMake(x, y, o.size.width, o.size.height)
+#define CGRECT_MAKE_WH(o,w,h)                      CGRectMake(o.origin.x, o.origin.y, w, h)
+#define VIEW_X_Y(view,x,y)                         view.frame = CGRECT_MAKE_XY(view.frame, x, y)
+#define VIEW_W_H(view,w,h)                         view.frame = CGRECT_MAKE_WH(view.frame, w, h)
 
 // Log
 // trace("foo");
