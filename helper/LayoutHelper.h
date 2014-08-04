@@ -9,9 +9,10 @@
 
 @interface LayoutHelper : NSObject
 
-+ (UILabel *)addLabel:(NSString *)text fontSize:(float)fontSize fontColor:(UIColor*)fontColor width:(float)width;
++ (UILabel *)addLabel:(NSString *)text fontSize:(float)fontSize fontColor:(UIColor*)fontColor width:(float)width alignment:(NSTextAlignment)alignment;
 + (UILabel *)addLabel:(NSString *)text;
 + (UILabel *)addTitleLabel:(NSString *)text;
++ (UILabel *)addTitleLabelAlignCenter:(NSString *)text;
 + (UILabel *)addSubTitleLabel:(NSString *)text;
 + (UIImageView *)addImage:(UIImage *)image;
 

@@ -9,13 +9,16 @@
 
 @implementation LayoutHelper
 
-+ (UILabel *)addLabel:(NSString *)text fontSize:(float)fontSize fontColor:(UIColor*)fontColor width:(float)width
++ (UILabel *)addLabel:(NSString *)text fontSize:(float)fontSize fontColor:(UIColor*)fontColor width:(float)width alignment:(NSTextAlignment)alignment
 {
   UILabel *label = [[UILabel alloc] init];
   label.numberOfLines = 0;
   label.font = [UIFont systemFontOfSize:fontSize];
   label.textColor = fontColor;
   label.text = text;
+  if (alignment) {
+    label.textAlignment = alignment;
+  }
   
   if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
     NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:text attributes:@{ NSFontAttributeName:[UIFont systemFontOfSize:fontSize] }];
@@ -32,17 +35,22 @@
 
 + (UILabel *)addLabel:(NSString *)text
 {
-  return [self addLabel:text fontSize:17 fontColor:nil width:300];
+  return [self addLabel:text fontSize:17 fontColor:nil width:300 alignment:NSTextAlignmentLeft];
 }
 
 + (UILabel *)addTitleLabel:(NSString *)text
 {
-  return [self addLabel:text fontSize:19 fontColor:nil width:300];
+  return [self addLabel:text fontSize:19 fontColor:nil width:300 alignment:NSTextAlignmentLeft];
+}
+
++ (UILabel *)addTitleLabelAlignCenter:(NSString *)text
+{
+  return [self addLabel:text fontSize:19 fontColor:nil width:300 alignment:NSTextAlignmentCenter];
 }
 
 + (UILabel *)addSubTitleLabel:(NSString *)text
 {
-  return [self addLabel:text fontSize:18 fontColor:[UIColor colorWithRed:0.000 green:0.200 blue:0.400 alpha:1.000] width:300];
+  return [self addLabel:text fontSize:18 fontColor:[UIColor colorWithRed:0.000 green:0.200 blue:0.400 alpha:1.000] width:300]; width:300 alignment:NSTextAlignmentLeft];
 }
 
 + (UIImageView *)addImage:(UIImage *)image
