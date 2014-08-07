@@ -15,5 +15,6 @@
 + (PKPassManager *)sharedManager;
 
 - (void)showPassByIndex:(int)index;
+- (void)showPassBySerialNumber:(NSString *)sn;
 
 @end
