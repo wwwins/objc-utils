@@ -12,6 +12,8 @@
 
 @interface SqlManager : NSObject
 
+@property (strong, nonatomic) FMDatabase *db;
+
 + (SqlManager *)sharedManager;
 
 - (BOOL)openDatabaseWithPath:(NSString *)fileName;

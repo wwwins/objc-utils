@@ -5,16 +5,17 @@
 //  Copyright (c) 2014年 isobar. All rights reserved.
 //
 
+#import "FMDatabaseAdditions.h"
+
 #import "SqlManager.h"
 
-
 @interface SqlManager ()
-
-@property (strong, nonatomic) FMDatabase *db;
 
 @end
 
 @implementation SqlManager
+
+@synthesize db = _db;
 
 + (id)sharedManager {
   static dispatch_once_t once;
