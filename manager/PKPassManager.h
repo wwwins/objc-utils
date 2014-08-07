@@ -16,5 +16,6 @@
 
 - (void)showPassByIndex:(int)index;
 - (void)showPassBySerialNumber:(NSString *)sn;
+- (NSMutableArray *)getPassSerialNumberArrayExcludeWithArray:(NSArray *)excludeArray;
 
 @end

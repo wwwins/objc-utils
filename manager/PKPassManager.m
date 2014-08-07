@@ -56,17 +56,23 @@
 
 - (void)showPassBySerialNumber:(NSString *)sn
 {
-  NSArray *passArray = [_passLib passes];
-  PKPass *pass;
-  for (pass in passArray) {
-    if ([pass.serialNumber isEqualToString:sn]) {
-      NSLog(@"passID:%@, passSN:%@",pass.passTypeIdentifier,pass.serialNumber);
-      break;
-    }
-  }
+  PKPass *pass = [_passLib passWithPassTypeIdentifier:[[NSBundle mainBundle] bundleIdentifier] serialNumber:sn];
   [[UIApplication sharedApplication] openURL:pass.passURL];
   
 }
 
+- (NSMutableArray *)getPassSerialNumberArrayExcludeWithArray:(NSArray *)excludeArray
+{
+  NSMutableArray *serialNumberArray = [[NSMutableArray alloc] init];
+  NSArray *passArray = [_passLib passes];
+  PKPass *pass;
+  for (pass in passArray) {
+    [serialNumberArray addObject:pass.serialNumber];
+  }
+  [serialNumberArray removeObjectsInArray:excludeArray];
+  
+  return serialNumberArray;
+  
+}
 
 @end
