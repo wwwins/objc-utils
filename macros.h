@@ -1,6 +1,6 @@
 // Some useful preprocessor macros in objc
 // Device info
-#define IS_IPAD                                    (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPAD                                    ([[[UIDevice currentDevice] model] rangeOfString:@"iphone"].location == NSNotFound)
 #define IS_IPHONE                                  (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define IS_IPHONE_5                                (IS_IPHONE && [[UIScreen mainScreen] bounds].size.height == 568.0f)
 
