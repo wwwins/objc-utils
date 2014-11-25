@@ -3,10 +3,10 @@ objc-utils
 
 Some useful utilities in objc
 
-### macros.h
+## macros.h
 
-### DownloadHelper
-```
+## DownloadHelper
+```objc
 // download a single file
 [DownloadHelper fetch:@"stores.db"];
 [DownloadHelper fetch:@"stores1.db"];
@@ -21,8 +21,8 @@ Some useful utilities in objc
 
 ```
 
-### LayoutHelper
-```
+## LayoutHelper
+```objc
 // add a label for title
 CSLinearLayoutItem *titleItem = [CSLinearLayoutItem layoutItemForView:[LayoutHelper addTitleLabel:@"my left title"]];
 titleItem.padding = CSLinearLayoutMakePadding(5.0, 10.0, 5.0, 10.0);
@@ -37,3 +37,22 @@ imageItem.padding = CSLinearLayoutMakePadding(5.0, 10.0, 5.0, 10.0);
 imageItem.horizontalAlignment = CSLinearLayoutItemHorizontalAlignmentCenter;
 [_layoutView addItem:imageItem];
 ```
+
+## LogManager
+Output log message to FLEX.
+
+### Installation
+`pod "FLEX", git => 'https://github.com/wwwins/FLEX.git', :branch => 'custom'`
+`pod "Realm"`
+
+### Usage
+```objc
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+  [[FLEXManager sharedManager] showExplorer];
+
+  LogManager *logManager = [LogManager sharedManager];
+  [logManager log:@"Start LogManager..."];
+}
+```
+
