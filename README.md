@@ -42,8 +42,10 @@ imageItem.horizontalAlignment = CSLinearLayoutItemHorizontalAlignmentCenter;
 Output log message to FLEX.
 
 ### Installation
-`pod "FLEX", git => 'https://github.com/wwwins/FLEX.git', :branch => 'custom'`
-`pod "Realm"`
+```
+pod "FLEX", git => 'https://github.com/wwwins/FLEX.git', :branch => 'custom'
+pod "Realm"
+```
 
 ### Usage
 ```objc
