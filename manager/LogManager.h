@@ -16,6 +16,7 @@
 
 + (LogManager *)sharedManager;
 
+- (void)useMemoryRealm;
 - (void)useDefaultRealm;
 - (void)log:(NSString *)message;
 
