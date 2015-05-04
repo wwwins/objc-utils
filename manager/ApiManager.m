@@ -7,6 +7,7 @@
 
 #import "ApiManager.h"
 #import "AppConstants.h"
+#include <netdb.h>
 
 @interface ApiManager ()
 
