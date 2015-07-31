@@ -58,3 +58,18 @@ pod "Realm"
 }
 ```
 
+## BarcodeManager
+```objc
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  [[BarcodeManager sharedManager] startCapture:self.view andComplete:^(NSArray *result) {
+    NSLog(@"result%@",result[0]);
+    [[[UIAlertView alloc] initWithTitle:@"info" message:result[0] delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok", nil] show];
+  }];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [BarcodeManager sharedManager].isPaused = NO;
+}
+```
