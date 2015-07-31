@@ -64,7 +64,7 @@ pod "Realm"
 {
   [super viewDidAppear:animated];
   [[BarcodeManager sharedManager] startCapture:self.view andComplete:^(NSArray *result) {
-    NSLog(@"result%@",result[0]);
+    NSLog(@"result:%@",result[0]);
     [[[UIAlertView alloc] initWithTitle:@"info" message:result[0] delegate:self cancelButtonTitle:@"cancel" otherButtonTitles:@"ok", nil] show];
   }];
 }
