@@ -74,7 +74,7 @@
 }
 
 - (void)stopCapture {
-  [_captureVideoPreviewLayer removeFromSuperlayer];
+  [_previewView.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     for (AVCaptureInput *input in _session.inputs) {
       [_session removeInput:input];
