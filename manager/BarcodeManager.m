@@ -21,19 +21,7 @@
 
 - (id)init {
   if (self = [super init]) {
-    NSError *error = nil;
-    _device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    if([_device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus]){
-      if([_device lockForConfiguration:&error]) {
-        [_device setFocusPointOfInterest:CGPointMake(0.5f, 0.5f)];
-        [_device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
-        [_device unlockForConfiguration];
-      }
-      else{
-        NSLog(@"configuration error");
-      }
-    }
-    
+
   }
   return self;
 }
@@ -46,6 +34,17 @@
 
 - (void)startCapture {
   NSError *error = nil;
+  _device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+  if([_device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus]){
+    if([_device lockForConfiguration:&error]) {
+      [_device setFocusPointOfInterest:CGPointMake(0.5f, 0.5f)];
+      [_device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+      [_device unlockForConfiguration];
+    }
+    else{
+      NSLog(@"configuration error");
+    }
+  }
   _session = [[AVCaptureSession alloc] init];
   
   AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:_device error:&error];
@@ -86,6 +85,7 @@
     [_session stopRunning];
     _isPaused = NO;
     _completeBlock = nil;
+    _device = nil;
     _session = nil;
     _captureVideoPreviewLayer = nil;
     
