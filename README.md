@@ -59,6 +59,12 @@ pod "Realm"
 ```
 
 ## BarcodeManager
+for iOS10
+add `Privacy - Camera Usage Description` in info.plist
+```xml
+<key>NSCameraUsageDescription</key>
+<string>行動修碼課程掃描</string>
+```
 ```objc
 - (void)viewDidAppear:(BOOL)animated
 {
