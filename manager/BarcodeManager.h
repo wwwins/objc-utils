@@ -26,5 +26,7 @@
 - (void)startCapture:(UIView *)withView andComplete:(void (^)(NSArray *result))completeBlock;
 //- (void)startCapture;
 - (void)stopCapture;
+- (void)torchOnOff;
+- (void)setTorchToLevel:(float)torchLevel;
 
 @end

@@ -46,7 +46,7 @@
     }
   }
   _session = [[AVCaptureSession alloc] init];
-  
+
   AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:_device error:&error];
   if ([_session canAddInput:input]) {
     [_session addInput:input];
@@ -54,23 +54,23 @@
   else {
     NSLog(@"can not add input");
   }
-  
+
   AVCaptureMetadataOutput *output = [[AVCaptureMetadataOutput alloc] init];
   if([_session canAddOutput:output]){
     [_session addOutput:output];
     [output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
-    
+
     // setMetadataObjectTypes must be call after addOutput
     [output setMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
   }
-  
+
   _captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_session];
   _captureVideoPreviewLayer.frame = _previewView.frame;
   _captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
   [_previewView.layer addSublayer:_captureVideoPreviewLayer];
-  
+
   [_session startRunning];
-  
+
 }
 
 - (void)stopCapture {
@@ -88,17 +88,17 @@
     _device = nil;
     _session = nil;
     _captureVideoPreviewLayer = nil;
-    
+
   });
 }
 
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
-  
+
   if(_isPaused)
     return;
-  
+
   NSMutableArray *result = [[NSMutableArray alloc] init];
   NSString *qrcode = nil;
   for (AVMetadataObject *metadata in metadataObjects) {
@@ -111,7 +111,37 @@
       break;
     }
   }
-  
+
+}
+
+# pragma mark - turn on/off the flash
+
+- (void)torchOnOff {
+  AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+  if ([device hasTorch]) {
+    if ([device torchMode] == AVCaptureTorchModeOff) {
+      [self setTorchToLevel:1.0];
+    }
+    else {
+      [self setTorchToLevel:0.0];
+    }
+  }
+}
+
+- (void)setTorchToLevel:(float)torchLevel {
+  AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+  if ([device hasTorch]) {
+    [device lockForConfiguration:nil];
+    if (torchLevel <= 0.0) {
+      [device setTorchMode:AVCaptureTorchModeOff];
+    }
+    else {
+      if (torchLevel >= 1.0)
+        torchLevel = AVCaptureMaxAvailableTorchLevel;
+      BOOL success = [device setTorchModeOnWithLevel:torchLevel   error:nil];
+    }
+    [device unlockForConfiguration];
+  }
 }
 
 @end
